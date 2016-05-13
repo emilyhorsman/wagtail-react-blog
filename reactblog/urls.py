@@ -6,6 +6,7 @@ from django.views.generic import TemplateView
 from wagtail.wagtailadmin import urls as wagtailadmin_urls
 from wagtail.wagtaildocs import urls as wagtaildocs_urls
 from wagtail.wagtailcore import urls as wagtail_urls
+from wagtail.wagtailimages import urls as wagtailimage_urls
 import wagtail.wagtailimages.views
 from wagtail.contrib.wagtailapi import urls as wagtailapi_urls
 
@@ -22,6 +23,7 @@ urlpatterns = [
 
     url(r'^api/', include(wagtailapi_urls)),
     url(r'^wagtail/', include(wagtail_urls)),
+    url(r'^images/', include(wagtailimage_urls)),
 ]
 
 

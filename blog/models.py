@@ -6,6 +6,7 @@ from wagtail.wagtailcore import blocks
 from wagtail.wagtailadmin.edit_handlers import FieldPanel, StreamFieldPanel
 from wagtail.wagtailimages.blocks import ImageChooserBlock
 
+from . import image
 
 class BlogPage(Page):
     author = models.CharField(max_length=255)

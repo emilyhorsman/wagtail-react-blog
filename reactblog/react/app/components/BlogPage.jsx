@@ -24,6 +24,7 @@ class BlogPage extends Component {
         this.state = {
             loading: false,
             post: {},
+            images: [],
         }
     }
 
