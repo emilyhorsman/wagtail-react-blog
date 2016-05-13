@@ -36,6 +36,15 @@ a {
     }
 }
 
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+.text-center {
+    text-align: center;
+}
+
 header {
     border-bottom: 1px solid $gray-light;
 
