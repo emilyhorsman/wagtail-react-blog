@@ -8,6 +8,8 @@ import App from './components/App'
 import BlogIndex from './components/BlogIndex'
 import BlogPage from './components/BlogPage'
 
+import './styles.scss'
+
 class NotFound extends Component {
     render() {
         return <h1>404: Error Not Found</h1>

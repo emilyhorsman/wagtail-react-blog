@@ -1,0 +1,12 @@
+* {
+    box-sizing: border-box;
+}
+
+*:before, *:after {
+    box-sizing: inherit;
+}
+
+html {
+    font-family: 'Raleway', serif;
+    font-size: 18px;
+}
