@@ -2,9 +2,9 @@ import axios from 'axios'
 import React, { Component, cloneElement } from 'react'
 import { Link } from 'react-router'
 import FaParagraph from 'react-icons/fa/paragraph'
-import FaSearch from 'react-icons/fa/search'
 
 import Loader from './Loader'
+import Search from './Search'
 
 class App extends Component {
     constructor(props) {
@@ -18,10 +18,27 @@ class App extends Component {
         }
     }
 
+    handleSearch(value) {
+        this.incrementLoading()
+
+        axios.get('/api/v1/pages/', {
+                params: {
+                    type: 'blog.BlogPage',
+                    fields: ['title', 'author', 'body'].join(','),
+                    search: value,
+                }
+            })
+            .then(this.handlePagesIndex.bind(this))
+    }
+
     handleChange(key, event) {
-        this.setState({
-            [key]: event.target.value,
-        })
+        const value = event.target.value
+
+        if (key === 'search' && value.trim() !== '') {
+            this.handleSearch(value)
+        }
+
+        this.setState({ [key]: value })
     }
 
     handlePagesIndex(response) {
@@ -116,18 +133,10 @@ class App extends Component {
                             <FaParagraph /> Blog
                         </h1>
 
-                        <form>
-                            <div>
-                                <input
-                                    type="text"
-                                    value={this.state.search}
-                                    onChange={this.handleChange.bind(this, 'search')}
-                                    placeholder="Search…"
-                                />
-
-                                <FaSearch />
-                            </div>
-                        </form>
+                        <Search
+                            search={this.props.search}
+                            onChange={this.handleChange.bind(this, 'search')}
+                        />
 
                         <Link to="/blog/">
                             All Posts

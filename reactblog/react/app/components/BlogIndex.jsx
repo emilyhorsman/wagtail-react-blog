@@ -16,10 +16,36 @@ class BlogIndex extends Component {
             .then(this.props.handlePagesIndex)
     }
 
+    getPages() {
+        const search = this.props.search.trim().toLowerCase()
+
+        if (search === '') {
+            return this.props.pages
+        }
+
+        return this.props.pages.filter(page => {
+            if (page.title.toLowerCase().includes(search)) {
+                return true
+            }
+
+            if (page.author.toLowerCase().includes(search)) {
+                return true
+            }
+
+            return page.body.some(field => {
+                if (field.type !== 'heading' && field.type !== 'paragraph') {
+                    return false
+                }
+
+                return field.value.toLowerCase().includes(search)
+            })
+        })
+    }
+
     render() {
         return (
             <div>
-                {this.props.pages.map(post =>
+                {this.getPages().map(post =>
                     <BlogTease key={post.id} {...post} />
                 )}
             </div>
