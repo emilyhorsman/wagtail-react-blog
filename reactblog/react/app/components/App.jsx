@@ -23,7 +23,12 @@ class App extends Component {
     }
 
     handlePagesIndex(response) {
-        const pages = response.data.pages
+        const fetchedPages = response.data.pages
+        const existingPages = this.state.pages
+        const pages = fetchedPages.filter(fetchedPage => {
+            return !existingPages.some(page => page.id === fetchedPage.id)
+        })
+
         const imageFields = pages.reduce((acc, page) => {
             return acc.concat(page.body.filter(field => field.type === 'image'))
         }, [])
@@ -32,19 +37,23 @@ class App extends Component {
 
         this.setState({
             loading: this.state.loading - 1,
-            pages: this.state.pages.concat(response.data.pages),
+            pages: this.state.pages.concat(pages),
         })
     }
 
     handlePagesDetail(response) {
-        const page = response.data
-        const imageFields = page.body.filter(field => field.type === 'image')
+        const fetchedPage = response.data
+        if (this.state.pages.find(page => page.id === fetchedPage.id)) {
+            return
+        }
+
+        const imageFields = fetchedPage.body.filter(field => field.type === 'image')
 
         this.fireImageRequests(imageFields)
 
         this.setState({
             loading: this.state.loading - 1,
-            pages: this.state.pages.concat(page),
+            pages: this.state.pages.concat(fetchedPage),
         })
     }
 
