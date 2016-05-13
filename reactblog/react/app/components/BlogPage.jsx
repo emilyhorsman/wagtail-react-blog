@@ -12,6 +12,10 @@ Fields.paragraph = function(value) {
 Fields.image = function(value, images) {
     const image = images.find(image => image.id === value)
 
+    if (!image) {
+        return null
+    }
+
     return (
         <div className="text-center">
             <img
