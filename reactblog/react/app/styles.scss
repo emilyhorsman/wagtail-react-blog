@@ -49,8 +49,6 @@ header {
     border-bottom: 1px solid $gray-light;
 
     background: white;
-
-    font-family: 'Lato';
 }
 
 header .container {
@@ -137,6 +135,13 @@ form input {
 
 h2:first-of-type {
     margin-top: 0;
+}
+
+header,
+h1,
+h2,
+h3 {
+    font-family: 'Lato';
 }
 
 @keyframes fadeOut {
