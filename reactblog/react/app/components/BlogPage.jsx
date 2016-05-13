@@ -57,6 +57,7 @@ class BlogPage extends Component {
         return (
             <article>
                 <BlogTitle {...page} />
+                <small className="text-muted">by {page.author}</small>
 
                 {page.body.map((field, index) =>
                     <span key={index}>

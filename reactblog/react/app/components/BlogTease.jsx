@@ -18,6 +18,7 @@ class BlogTease extends Component {
         return (
             <div>
                 <BlogTitle {...this.props} />
+                <small className="text-muted">by {this.props.author}</small>
 
                 <Excerpt body={this.props.body} />
             </div>

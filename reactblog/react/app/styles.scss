@@ -1,5 +1,6 @@
 $gray-light: #e0e0e0;
 $gray: #bdbdbd;
+$gray-dark: #757575;
 
 $font-size: 18px;
 $form-y-padding: 5px;
@@ -133,8 +134,9 @@ form input {
     height: 40px;
 }
 
-h2:first-of-type {
-    margin-top: 0;
+h2 {
+    margin: 0;
+    margin-bottom: 0.2rem;
 }
 
 header,
@@ -158,4 +160,8 @@ h3 {
   animation-name: fadeOut;
   animation-fill-mode: both;
   animation-duration: 0.25s;
+}
+
+.text-muted {
+    color: $gray-dark;
 }
