@@ -9,8 +9,8 @@ Fields.paragraph = function(value) {
     return <div dangerouslySetInnerHTML={{ __html: value }} />
 }
 
-Fields.image = function(value, state) {
-    const image = state.images.find(image => image.id === value)
+Fields.image = function(value, images) {
+    const image = images.find(image => image.id === value)
     return (
         <div className="text-center">
             <img
@@ -27,65 +27,26 @@ Fields.heading = function(value) {
 }
 
 class BlogPage extends Component {
-    constructor(props) {
-        super(props)
-
-        this.state = {
-            loading: 0,
-            post: {},
-            images: [],
-        }
-    }
-
     componentDidMount() {
-        this.setState({
-            loading: this.state.loading + 1,
-        })
+        this.props.incrementLoading()
 
         axios.get(`/api/v1/pages/${this.props.params.postId}/`)
-            .then(this.handlePagesResponse.bind(this))
-    }
-
-    handlePagesResponse(response) {
-        const post = response.data
-        const imageFields = post.body.filter(field => field.type === 'image')
-        if (imageFields.length === 0) {
-            return this.setState({
-                loading: 0,
-                post: response.data,
-            })
-        }
-
-        this.setState({
-            loading: imageFields.length,
-            post: response.data,
-        })
-
-        for (const field of imageFields) {
-            axios.get(`/api/v1/images/${field.value}/`)
-                .then(this.handleImagesResponse.bind(this))
-        }
-    }
-
-    handleImagesResponse(response) {
-        this.setState({
-            loading: this.state.loading - 1,
-            images: this.state.images.concat(response.data),
-        })
+            .then(this.props.handlePagesDetail.bind(this))
     }
 
     render() {
-        if (Object.getOwnPropertyNames(this.state.post).length === 0) {
+        const page = this.props.pages.find(page => page.id === parseInt(this.props.params.postId))
+        if (!page) {
             return null
         }
 
         return (
             <article>
-                <BlogTitle {...this.state.post} />
+                <BlogTitle {...page} />
 
-                {this.state.loading === 0 && this.state.post.body.map((field, index) =>
+                {this.props.loading === 0 && page.body.map((field, index) =>
                     <span key={index}>
-                        {Fields[field.type](field.value, this.state)}
+                        {Fields[field.type](field.value, this.props.images)}
                     </span>
                 )}
             </article>
