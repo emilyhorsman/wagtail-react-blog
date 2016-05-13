@@ -1,3 +1,10 @@
+$gray-light: #e0e0e0;
+$gray: #bdbdbd;
+
+$font-size: 18px;
+$form-y-padding: 5px;
+$form-x-padding: 10px;
+
 * {
     box-sizing: border-box;
 }
@@ -8,5 +15,84 @@
 
 html {
     font-family: 'Raleway', serif;
-    font-size: 18px;
+    font-size: $font-size;
+}
+
+body {
+    margin: 0;
+
+    background: #fafafa;
+}
+
+a {
+    transition: all 0.25s ease;
+}
+
+header {
+    border-bottom: 1px solid $gray-light;
+
+    background: white;
+
+    font-family: 'Lato';
+}
+
+header .container {
+    display: flex;
+
+    justify-content: space-between;
+    align-items: center;
+
+    padding-top: 0.4rem;
+    padding-bottom: 0.4rem;
+}
+
+header a {
+    padding: 5px 10px;
+    border: 1px solid black;
+    border-radius: 3px;
+
+    color: black;
+
+    text-decoration: none;
+
+    &:hover {
+        background-color: black;
+        color: white;
+    }
+}
+
+header h1 {
+    font-size: 1.2rem;
+}
+
+header h1 svg {
+    margin-top: -2px;  // Vertically centering illusion
+}
+
+.container {
+    width: 700px;
+    margin: 0 auto;
+}
+
+form > div {
+    position: relative;
+
+    svg {
+        position: absolute;
+        top: $form-y-padding + 1px;
+        right: $form-x-padding;
+
+        color: $gray;
+    }
+}
+
+form input {
+    padding: $form-y-padding $form-x-padding;
+    padding-right: $form-x-padding + 18px;  // Accomodate the width of the search icon
+    border: 1px solid $gray-light;
+    border-radius: 3px;
+
+    font-family: 'Raleway';
+    font-size: 1rem;
+    font-weight: 300;
 }

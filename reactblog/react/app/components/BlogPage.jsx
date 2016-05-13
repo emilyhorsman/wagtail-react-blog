@@ -27,9 +27,9 @@ class BlogPage extends Component {
 
     render() {
         return (
-            <div>
+            <article>
                 {this.state.post.title}
-            </div>
+            </article>
         )
     }
 }
