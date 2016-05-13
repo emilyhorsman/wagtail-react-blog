@@ -12,10 +12,6 @@ class App extends Component {
         }
     }
 
-    componentDidMount() {
-        this.refs.searchInput.focus()
-    }
-
     handleChange(key, event) {
         this.setState({
             [key]: event.target.value,
@@ -38,7 +34,6 @@ class App extends Component {
                                     value={this.state.search}
                                     onChange={this.handleChange.bind(this, 'search')}
                                     placeholder="Search…"
-                                    ref="searchInput"
                                 />
 
                                 <FaSearch />
