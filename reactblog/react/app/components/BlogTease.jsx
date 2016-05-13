@@ -7,7 +7,7 @@ class BlogTease extends Component {
 
         return (
             <div>
-                <Link to={`/blog/${id}/`}>{this.props.title}</Link>
+                <h2><Link to={`/blog/${id}/`}>{this.props.title}</Link></h2>
                 <div dangerouslySetInnerHTML={{ __html: this.props.body[0].value }} />
             </div>
         )
