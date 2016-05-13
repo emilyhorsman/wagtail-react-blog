@@ -51,12 +51,6 @@ var common = {
             {
                 test: /\.css$/,
                 loader: 'style!css!postcss'
-            },
-
-            {
-                test: /\.css$/,
-                loader: 'style!css',
-                include: __dirname + '/app'
             }
         ]
     },

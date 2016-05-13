@@ -11,6 +11,7 @@ Fields.paragraph = function(value) {
 
 Fields.image = function(value, images) {
     const image = images.find(image => image.id === value)
+
     return (
         <div className="text-center">
             <img
@@ -53,7 +54,7 @@ class BlogPage extends Component {
             <article>
                 <BlogTitle {...page} />
 
-                {this.props.loading === 0 && page.body.map((field, index) =>
+                {page.body.map((field, index) =>
                     <span key={index}>
                         {Fields[field.type](field.value, this.props.images)}
                     </span>

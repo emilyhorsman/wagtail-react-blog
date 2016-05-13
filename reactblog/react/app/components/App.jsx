@@ -4,6 +4,8 @@ import { Link } from 'react-router'
 import FaParagraph from 'react-icons/fa/paragraph'
 import FaSearch from 'react-icons/fa/search'
 
+import Loader from './Loader'
+
 class App extends Component {
     constructor(props) {
         super(props)
@@ -134,6 +136,10 @@ class App extends Component {
                 </header>
 
                 <main className="container">
+                    <div className="flex-center min-height-bar">
+                        <Loader loading={this.state.loading} />
+                    </div>
+
                     {React.Children.map(children, child => cloneElement(child, childProps))}
                 </main>
             </div>

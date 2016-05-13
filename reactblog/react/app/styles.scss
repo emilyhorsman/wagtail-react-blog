@@ -111,3 +111,46 @@ form input {
     font-size: 1rem;
     font-weight: 300;
 }
+
+.ball-pulse > div {
+    background-color: rgba(#283593, 0.8);
+}
+
+.loader {
+    letter-spacing: 1px;
+}
+
+.loader-inner {
+    display: inline-block;
+}
+
+.flex-center {
+    display: flex;
+
+    align-items: flex-end;
+    justify-content: center;
+}
+
+.min-height-bar {
+    height: 40px;
+}
+
+h2:first-of-type {
+    margin-top: 0;
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+  }
+}
+
+.fade-out {
+  animation-name: fadeOut;
+  animation-fill-mode: both;
+  animation-duration: 0.25s;
+}

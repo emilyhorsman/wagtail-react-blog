@@ -17,10 +17,6 @@ class BlogIndex extends Component {
     }
 
     render() {
-        if (this.props.loading) {
-            return <p>Loading...</p>
-        }
-
         return (
             <div>
                 {this.props.pages.map(post =>
