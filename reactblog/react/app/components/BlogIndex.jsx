@@ -43,9 +43,15 @@ class BlogIndex extends Component {
     }
 
     render() {
+        const pages = this.getPages()
+
+        if (pages.length === 0) {
+            return <div>No posts found.</div>
+        }
+
         return (
             <div>
-                {this.getPages().map(post =>
+                {pages.map(post =>
                     <BlogTease key={post.id} {...post} />
                 )}
             </div>
