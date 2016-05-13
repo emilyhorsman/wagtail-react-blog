@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component, cloneElement } from 'react'
 import { Link } from 'react-router'
 import FaParagraph from 'react-icons/fa/paragraph'
 import FaSearch from 'react-icons/fa/search'
@@ -19,6 +19,11 @@ class App extends Component {
     }
 
     render() {
+        const { children } = this.props
+        const childProps = {
+            search: this.state.search,
+        }
+
         return (
             <div>
                 <header>
@@ -47,7 +52,7 @@ class App extends Component {
                 </header>
 
                 <main className="container">
-                    {this.props.children}
+                    {React.Children.map(children, child => cloneElement(child, childProps))}
                 </main>
             </div>
         )
