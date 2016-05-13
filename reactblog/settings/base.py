@@ -43,6 +43,8 @@ INSTALLED_APPS = [
     'wagtail.contrib.wagtailapi',
     'rest_framework',
 
+    'webpack_loader',
+
     'modelcluster',
     'taggit',
 
@@ -139,3 +141,13 @@ MEDIA_URL = '/media/'
 
 WAGTAIL_SITE_NAME = "reactblog"
 WAGTAILAPI_BASE_URL = os.environ.get('WAGTAILAPI_BASE_URL', 'http://localhost')
+
+
+# Webpack Loader Configuration
+
+WEBPACK_LOADER = {
+    'DEFAULT': {
+        'STATS_FILE': os.path.join(PROJECT_DIR, 'static', 'js', 'bundles', 'webpack-stats.json'),
+        'BUNDLE_DIR_NAME': 'js/bundles/',
+    }
+}

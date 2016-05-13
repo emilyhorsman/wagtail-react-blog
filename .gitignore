@@ -2,3 +2,4 @@
 static
 media
 *.pyc
+node_modules
