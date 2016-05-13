@@ -20,3 +20,5 @@ class BlogPage(Page):
         FieldPanel('author'),
         StreamFieldPanel('body'),
     ]
+
+    api_fields = ['author', 'body',]
