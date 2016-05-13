@@ -9,6 +9,8 @@ class App extends Component {
 
         this.state = {
             search: '',
+            loading: 0,
+            pages: [],
         }
     }
 
@@ -18,10 +20,26 @@ class App extends Component {
         })
     }
 
+    handlePagesIndex(response) {
+        this.setState({
+            loading: this.state.loading - 1,
+            pages: this.state.pages.concat(response.data.pages),
+        })
+    }
+
+    incrementLoading() {
+        this.setState({
+            loading: this.state.loading + 1,
+        })
+    }
+
     render() {
         const { children } = this.props
         const childProps = {
             search: this.state.search,
+            handlePagesIndex: this.handlePagesIndex.bind(this),
+            incrementLoading: this.incrementLoading.bind(this),
+            pages: this.state.pages,
         }
 
         return (

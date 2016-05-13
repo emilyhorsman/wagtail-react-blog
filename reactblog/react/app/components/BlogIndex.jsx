@@ -4,19 +4,8 @@ import React, { Component } from 'react'
 import BlogTease from './BlogTease'
 
 class BlogIndex extends Component {
-    constructor(props) {
-        super(props)
-
-        this.state = {
-            loading: false,
-            posts: [],
-        }
-    }
-
     componentDidMount() {
-        this.setState({
-            loading: true,
-        })
+        this.props.incrementLoading()
 
         axios.get('/api/v1/pages/', {
                 params: {
@@ -24,24 +13,17 @@ class BlogIndex extends Component {
                     fields: ['title', 'author', 'body'].join(','),
                 },
             })
-            .then(response => {
-                this.setState({
-                    loading: false,
-                    posts: response.data.pages,
-                })
-            })
+            .then(this.props.handlePagesIndex)
     }
 
     render() {
-        const { loading, posts } = this.state
-
-        if (loading) {
+        if (this.props.loading) {
             return <p>Loading...</p>
         }
 
         return (
             <div>
-                {posts.map(post =>
+                {this.props.pages.map(post =>
                     <BlogTease key={post.id} {...post} />
                 )}
             </div>
