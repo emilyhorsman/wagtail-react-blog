@@ -28,14 +28,23 @@ Fields.heading = function(value) {
 
 class BlogPage extends Component {
     componentDidMount() {
+        // We don't need to fetch a page we already have
+        if (this.getPage()) {
+            return
+        }
+
         this.props.incrementLoading()
 
         axios.get(`/api/v1/pages/${this.props.params.postId}/`)
             .then(this.props.handlePagesDetail.bind(this))
     }
 
+    getPage() {
+        return this.props.pages.find(page => page.id === parseInt(this.props.params.postId))
+    }
+
     render() {
-        const page = this.props.pages.find(page => page.id === parseInt(this.props.params.postId))
+        const page = this.getPage()
         if (!page) {
             return null
         }

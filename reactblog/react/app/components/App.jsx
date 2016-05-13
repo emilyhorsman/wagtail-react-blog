@@ -63,12 +63,15 @@ class App extends Component {
     }
 
     fireImageRequests(imageFields) {
-        if (imageFields.length === 0) {
+        const images = this.state.images
+        const unfetchedImages = imageFields.filter(field => !images.some(image => image.id === field.value))
+
+        if (unfetchedImages.length === 0) {
             return
         }
 
-        this.incrementLoading(imageFields.length)
-        for (const field of imageFields) {
+        this.incrementLoading(unfetchedImages.length)
+        for (const field of unfetchedImages) {
             axios.get(`/api/v1/images/${field.value}/`)
                 .then(this.handleImagesDetail.bind(this))
         }
