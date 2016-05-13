@@ -2,9 +2,13 @@ import React, { Component } from 'react'
 import FaSearch from 'react-icons/fa/search'
 
 class Search extends Component {
+    onSubmit(event) {
+        event.preventDefault()
+    }
+
     render() {
         return (
-            <form>
+            <form onSubmit={this.onSubmit.bind(this)}>
                 <div>
                     <input
                         type="text"

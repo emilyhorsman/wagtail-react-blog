@@ -33,6 +33,8 @@ Fields.heading = function(value) {
 
 class BlogPage extends Component {
     componentDidMount() {
+        this.props.clearSearch()
+
         // We don't need to fetch a page we already have
         if (this.getPage()) {
             return

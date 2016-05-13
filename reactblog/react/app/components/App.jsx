@@ -1,6 +1,6 @@
 import axios from 'axios'
 import React, { Component, cloneElement } from 'react'
-import { Link } from 'react-router'
+import { Link, browserHistory } from 'react-router'
 import FaParagraph from 'react-icons/fa/paragraph'
 
 import Loader from './Loader'
@@ -11,7 +11,7 @@ class App extends Component {
         super(props)
 
         this.state = {
-            search: '',
+            search: this.props.location.query.search || '',
             loading: 0,
             pages: [],
             images: [],
@@ -36,10 +36,14 @@ class App extends Component {
     }
 
     handleChange(key, event) {
-        const value = event.target.value
+        const value = event.target.value.trim()
 
-        if (key === 'search' && value.trim() !== '') {
-            this.handleSearch(value)
+        if (key === 'search') {
+            browserHistory.push(!value ? '/blog/' : '/blog/?search=' + value)
+
+            if (value.trim() !== '') {
+                this.handleSearch(value)
+            }
         }
 
         this.setState({ [key]: value })
@@ -115,6 +119,12 @@ class App extends Component {
         })
     }
 
+    clearSearch() {
+        this.setState({
+            search: '',
+        })
+    }
+
     render() {
         const { children } = this.props
         const childProps = {
@@ -125,6 +135,7 @@ class App extends Component {
             handleImagesIndex: this.handleImagesIndex.bind(this),
             handleImagesDetail: this.handleImagesDetail.bind(this),
             incrementLoading: this.incrementLoading.bind(this),
+            clearSearch: this.clearSearch.bind(this),
             pages: this.state.pages,
             images: this.state.images,
         }
@@ -138,7 +149,7 @@ class App extends Component {
                         </h1>
 
                         <Search
-                            search={this.props.search}
+                            search={this.state.search}
                             onChange={this.handleChange.bind(this, 'search')}
                         />
 
