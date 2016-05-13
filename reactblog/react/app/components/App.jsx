@@ -19,6 +19,10 @@ class App extends Component {
     }
 
     handleSearch(value) {
+        if (this.state.loading > 0) {
+            return
+        }
+
         this.incrementLoading()
 
         axios.get('/api/v1/pages/', {
