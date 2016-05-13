@@ -14,6 +14,10 @@ class BlogIndex extends Component {
     }
 
     componentDidMount() {
+        this.setState({
+            loading: true,
+        })
+
         axios.get('/api/v1/pages/', {
                 params: {
                     type: 'blog.BlogPage',
@@ -22,6 +26,7 @@ class BlogIndex extends Component {
             })
             .then(response => {
                 this.setState({
+                    loading: false,
                     posts: response.data.pages,
                 })
             })
