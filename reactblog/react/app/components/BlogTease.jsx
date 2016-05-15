@@ -5,9 +5,14 @@ import { highlight } from '../helpers'
 import BlogTitle from './BlogTitle'
 
 function Excerpt({ body, ...props }) {
-    const excerptField = body.find(field => field.type === 'paragraph')
+    let excerptField = null
+    if (!props.highlight) {
+        excerptField = body.find(field => field.type === 'paragraph')
+    } else {
+        excerptField = body.find(field => field.value.toLowerCase().includes(props.highlight.toLowerCase()))
+    }
 
-    if (!excerptField.value) {
+    if (!excerptField) {
         return null
     }
 
