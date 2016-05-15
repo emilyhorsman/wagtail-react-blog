@@ -1,5 +1,11 @@
 import 'babel-polyfill'
 
+window.onunhandledrejection = (e) => {
+    if ('reason' in e) {
+        throw e.reason
+    }
+}
+
 import React, { Component } from 'react'
 import { render } from 'react-dom'
 import { Router, IndexRedirect, Route, browserHistory } from 'react-router'
