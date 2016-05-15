@@ -39,7 +39,7 @@ class App extends Component {
         const value = event.target.value.trim()
 
         if (key === 'search') {
-            browserHistory.push(!value ? '/blog/' : '/blog/?search=' + value)
+            browserHistory.push(!value ? '/blog/' : '/blog/?search=' + encodeURIComponent(value))
 
             if (value.trim() !== '') {
                 this.handleSearch(value)
