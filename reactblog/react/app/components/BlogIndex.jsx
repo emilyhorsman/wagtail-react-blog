@@ -52,7 +52,11 @@ class BlogIndex extends Component {
         return (
             <div>
                 {pages.map(post =>
-                    <BlogTease key={post.id} {...post} />
+                    <BlogTease
+                        highlight={this.props.search}
+                        key={post.id}
+                        {...post}
+                    />
                 )}
             </div>
         )
