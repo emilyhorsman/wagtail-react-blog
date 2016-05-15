@@ -9,7 +9,8 @@ function Excerpt({ body, ...props }) {
     if (!props.highlight) {
         excerptField = body.find(field => field.type === 'paragraph')
     } else {
-        excerptField = body.find(field => field.value.toLowerCase().includes(props.highlight.toLowerCase()))
+        excerptField = body.filter(field => field.type === 'paragraph' || field.type === 'heading')
+            .find(field => field.value.toLowerCase().includes(props.highlight.toLowerCase()))
     }
 
     if (!excerptField) {
