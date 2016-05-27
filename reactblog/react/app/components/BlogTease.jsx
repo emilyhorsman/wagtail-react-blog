@@ -14,7 +14,7 @@ function Excerpt({ body, ...props }) {
     }
 
     if (!excerptField) {
-        return null
+        excerptField = body.find(field => field.type === 'paragraph')
     }
 
     const value = props.highlight ? highlight(excerptField.value, props.highlight, true) : excerptField.value
