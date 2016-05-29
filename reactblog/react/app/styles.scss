@@ -169,3 +169,33 @@ h3 {
 .highlight {
     background-color: yellow;
 }
+
+.labelled,
+.labelled [data-label] {
+    position: relative;
+
+    outline: 3px solid rgba(green, 0.3);
+}
+
+// Naive trick to avoid labels overlapping
+[data-label] > [data-label] {
+    &:after {
+        left: 0;
+        right: auto;
+    }
+}
+
+.labelled:after,
+.labelled [data-label]:after {
+    content: attr(data-label);
+
+    position: absolute;
+    bottom: 0;
+    right: 0;
+
+    background: #fafafa;
+    color: black;
+
+    font-size: 1rem;
+    font-weight: normal;
+}

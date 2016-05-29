@@ -8,7 +8,7 @@ export default function BlogTitle({ id, ...props }) {
 
     return (
         <Link to={`/blog/${id}/`}>
-            <h2>{title}</h2>
+            <h2 data-label="BlogTitle">{title}</h2>
         </Link>
     )
 }

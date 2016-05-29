@@ -57,7 +57,7 @@ class BlogPage extends Component {
         }
 
         return (
-            <article>
+            <article data-label="BlogPage">
                 <BlogTitle {...page} />
                 <small className="text-muted">by {page.author}</small>
 

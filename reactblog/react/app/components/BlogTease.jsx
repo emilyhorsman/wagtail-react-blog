@@ -27,7 +27,7 @@ class BlogTease extends Component {
         const _author = this.props.highlight ? highlight(author, this.props.highlight) : author
 
         return (
-            <div>
+            <div data-label="BlogTease">
                 <BlogTitle {...this.props} />
                 <small className="text-muted">by {_author}</small>
 

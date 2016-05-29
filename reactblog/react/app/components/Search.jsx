@@ -8,7 +8,7 @@ class Search extends Component {
 
     render() {
         return (
-            <form onSubmit={this.onSubmit.bind(this)}>
+            <form onSubmit={this.onSubmit.bind(this)} data-label="Search">
                 <div>
                     <input
                         type="text"

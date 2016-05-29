@@ -15,6 +15,23 @@ class App extends Component {
             loading: 0,
             pages: [],
             images: [],
+            showComponentLabels: false,
+        }
+    }
+
+    componentDidMount() {
+        document.addEventListener('keydown', this.handleKeydown.bind(this))
+    }
+
+    handleKeydown(event) {
+        if (event.target.form) {
+            return
+        }
+
+        if (event.keyCode === 76) {
+            this.setState({
+                showComponentLabels: !this.state.showComponentLabels,
+            })
         }
     }
 
@@ -140,8 +157,10 @@ class App extends Component {
             images: this.state.images,
         }
 
+        const className = this.state.showComponentLabels ? 'labelled' : ''
+
         return (
-            <div>
+            <div className={className} data-label="App">
                 <header>
                     <div className="container">
                         <h1>

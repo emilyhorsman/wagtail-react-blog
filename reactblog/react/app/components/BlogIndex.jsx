@@ -50,7 +50,7 @@ class BlogIndex extends Component {
         }
 
         return (
-            <div>
+            <div data-label="BlogIndex">
                 {pages.map(post =>
                     <BlogTease
                         highlight={this.props.search}
