@@ -23,6 +23,13 @@ class App extends Component {
         document.addEventListener('keydown', this.handleKeydown.bind(this))
     }
 
+    componentWillReceiveProps(nextProps) {
+        const query = nextProps.location.query.search || ''
+        if (this.state.search !== query) {
+            this.setState({ search: query })
+        }
+    }
+
     handleKeydown(event) {
         if (event.target.form) {
             return
